@@ -125,7 +125,7 @@ function ResponsiveAppBar() {
           </Box>
           
           <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center', gap: 2 }}>
-          <CartWidget /> {/* ⬅️ Agregamos el carrito */}
+          <CartWidget /> 
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
