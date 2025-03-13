@@ -7,6 +7,7 @@ import "./App.css";
 import ItemListContainer from './ItemListContainer/ItemListContainer';
 import Talleres from './pages/Talleres';
 import DetalleTaller from './pages/DetalleTaller';
+import Carrito from './pages/Carrito';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/producto/:id" element={<DetalleProducto />} />
         <Route path="/talleres" element={<Talleres />} />
         <Route path="/talleres/:id" element={<DetalleTaller />} />
+        <Route path="/carrito" element={<Carrito />} />
       </Routes>
     </BrowserRouter>
   );
