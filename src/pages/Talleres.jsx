@@ -2,15 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const talleres = [
-  { id: 1, nombre: "Tejido Básico",  precio: 30000 },
-  { id: 2, nombre: "Crochet Avanzado", precio: 32000 },
-  { id: 3, nombre: "Macramé Creativo", precio: 42000 },
+  { id: 4, nombre: "Tejido Básico",  precio: 30000 },
+  { id: 5, nombre: "Crochet Avanzado", precio: 32000 },
+  { id: 6, nombre: "Macramé Creativo", precio: 30000 },
 ];
 
 const Talleres = () => {
   return (
     <div>
-      <h2>Catálogo de Talleres</h2>
+      <h1>Catálogo de Talleres</h1>
       <ul>
         {talleres.map((taller) => (
           <li key={taller.id}>
