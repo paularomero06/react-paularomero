@@ -9,7 +9,7 @@ const Cart = () => {
         return (
             <div>
                 <h2>Tu carrito está vacío</h2>
-                <Link to="/">Volver al catálogo</Link>
+                <Link to="/">Volver al Inicio</Link>
             </div>
         );
 
