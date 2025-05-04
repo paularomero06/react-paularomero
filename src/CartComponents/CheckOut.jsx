@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { CartContext } from "../CartComponents/CartContext";
 import { collection, addDoc, getFirestore, serverTimestamp } from "firebase/firestore";
+import { db } from "../firebase/client.js"; 
 import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
@@ -26,7 +27,6 @@ const Checkout = () => {
             return;
         }
 
-        const db = getFirestore();
         const ordersCollection = collection(db, "orders");
 
         addDoc(ordersCollection, {
@@ -43,7 +43,7 @@ const Checkout = () => {
             .catch((error) => console.error("Error al generar orden: ", error));
     };
 
-    if (orderId)
+    if (orderId) {
         return (
             <div>
                 <h2>¡Gracias por tu compra!</h2>
@@ -51,16 +51,52 @@ const Checkout = () => {
                 <button onClick={() => navigate("/")}>Volver al inicio</button>
             </div>
         );
+    }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>Checkout</h2>
-            <input name="name" placeholder="Nombre" onChange={handleInputChange} required />
-            <input name="phone" placeholder="Teléfono" onChange={handleInputChange} required />
-            <input name="email" placeholder="Email" onChange={handleInputChange} required />
-            <input name="emailConfirm" placeholder="Confirmar Email" onChange={handleInputChange} required />
-            <button type="submit">Generar Orden</button>
-        </form>
+        <div>
+            <h2>Resumen del carrito</h2>
+            <ul>
+                {cartItems.map((item) => {
+                    return (
+                        <li key={item.id}>
+                            {item.nombre} - {item.quantity} x ${item.precio} = ${item.quantity * item.precio}
+                        </li>
+                    );
+                })}
+
+            </ul>
+            <h3>Total: ${totalPrice}</h3>
+
+            <form onSubmit={handleSubmit}>
+                <h2>Checkout</h2>
+                <input
+                    name="name"
+                    placeholder="Nombre"
+                    onChange={handleInputChange}
+                    required
+                />
+                <input
+                    name="phone"
+                    placeholder="Teléfono"
+                    onChange={handleInputChange}
+                    required
+                />
+                <input
+                    name="email"
+                    placeholder="Email"
+                    onChange={handleInputChange}
+                    required
+                />
+                <input
+                    name="emailConfirm"
+                    placeholder="Confirmar Email"
+                    onChange={handleInputChange}
+                    required
+                />
+                <button type="submit">Generar Orden</button>
+            </form>
+        </div>
     );
 };
 

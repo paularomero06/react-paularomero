@@ -6,6 +6,7 @@ export const CartProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
 
     const addItem = (item, quantity) => {
+        console.log("Item completo:", item); //
         const existingItem = cartItems.find((prod) => prod.id === item.id);
         if (existingItem) {
             setCartItems(
@@ -31,7 +32,7 @@ export const CartProvider = ({ children }) => {
     const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
     const totalPrice = cartItems.reduce(
-        (acc, item) => acc + item.quantity * item.price,
+        (acc, item) => acc + item.quantity * item.precio,
         0
     );
 

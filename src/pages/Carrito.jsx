@@ -18,9 +18,9 @@ const Cart = () => {
             <h2>Carrito de compras</h2>
             {cartItems.map((item) => (
                 <div key={item.id}>
-                    <p>{item.name}</p>
+                    <p>{item.nombre}</p>
                     <p>Cantidad: {item.quantity}</p>
-                    <p>Subtotal: ${item.price * item.quantity}</p>
+                    <p>Subtotal: ${item.precio * item.quantity}</p>
                     <button onClick={() => removeItem(item.id)}>Eliminar</button>
                 </div>
             ))}

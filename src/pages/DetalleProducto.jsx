@@ -1,25 +1,27 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import ItemQuantitySelector from "../ItemQuantitySelector/ItemQuantitySelector";
 import AddItemButton from "../AddItemButton/AddItemButton"; 
+import { CartContext } from "../CartComponents/CartContext"; 
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 
-// Datos de productos y talleres unificados
 const items = [
   { id: 1, tipo: "producto", nombre: "Lana Merino", descripcion: "100% Pura Lana, abrigo inigualable.", precio: 32000 },
   { id: 2, tipo: "producto", nombre: "Shetland", descripcion: "Hecha 70% Lana 30% Acrílico.", precio: 33000 },
   { id: 3, tipo: "producto", nombre: "Cashmilon Semigrueso", descripcion: "100% Acrílico e Hipoalergénico", precio: 22000 },
-  { id: 4, tipo: "taller", nombre: "Tejido Básico", descripcion: "Aprende los puntos básicos de tricot para crear las prendas más hermosas y prácticas.", precio: 32000 },
-  { id: 5, tipo: "taller", nombre: "Crochet Avanzado", descripcion: "Técnicas avanzadas de crochet: tapestry, amigurumi, Intarsia, etc.", precio: 34000 },
-  { id: 6, tipo: "taller", nombre: "Macramé Creativo", descripcion: "Crea hermosos diseños en macramé: Tapices, porta-macetas y más.", precio: 30000 },
+  { id: 4, tipo: "taller", nombre: "Tejido Básico", descripcion: "Aprende los puntos básicos de tricot...", precio: 32000 },
+  { id: 5, tipo: "taller", nombre: "Crochet Avanzado", descripcion: "Técnicas avanzadas de crochet...", precio: 34000 },
+  { id: 6, tipo: "taller", nombre: "Macramé Creativo", descripcion: "Crea hermosos diseños en macramé...", precio: 30000 },
 ];
 
 function DetalleProducto() {
   const { id } = useParams();
-  const item = items.find((i) => i.id === parseInt(id)); // Encontramos el producto o taller correspondiente
-
-  const [quantity, setQuantity] = useState(1); 
+  const item = items.find((i) => i.id === parseInt(id));
+  const [quantity, setQuantity] = useState(1);
+  const { addItem } = useContext(CartContext); 
 
   const handleAddToCart = (cantidad) => {
+    addItem(item, cantidad); // 👈 lo agregamos al carrito
     console.log(`Agregado al carrito: ${cantidad} unidades de ${item.nombre}`);
   };
 
